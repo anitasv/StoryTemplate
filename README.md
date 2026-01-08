@@ -2,13 +2,23 @@
 
 A minimal template for writing novels with [Typst](https://typst.app/).
 
-## Install / create your own repo
+## Bootstrap (create your own novel repo)
 
-Start here:
+Recommended one-command project creation (creates a new folder + fresh Git repo):
 
-- **docs/INSTALL.md** — recommended one-command bootstrap (curl) to create your own novel folder + Git repo.
+```sh
+curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
+```
 
-If you want to keep an `upstream` remote for pulling template updates, see **docs/CONTRIBUTE.md**.
+On **macOS**, the bootstrap script will also offer to install missing prerequisites
+(Homebrew, Typst, Pandoc). It will skip anything that’s already installed.
+
+Then:
+
+```sh
+cd YourProjectFolder
+make pdf
+```
 
 ## Prerequisites
 
@@ -31,42 +41,21 @@ You’ll need the following tools installed locally:
 
 ## Quick start
 
-If you haven’t yet, follow **docs/INSTALL.md** first.
+### What to edit first
 
-### One-command project creation (recommended)
+- `chapters/` — your manuscript content (start with `chapters/chapter1.typ`)
+- `story.typ` — chapter ordering (includes chapters in order)
+- `print.typ` — print/PDF entrypoint (cover + title page + includes `story.typ`)
+- `ebook.typ` — ebook/HTML entrypoint (includes `story.typ`)
 
-This will:
-
-- prompt you for your novel title/author/etc.
-- create a new folder (default is CamelCase derived from the title)
-- clone the template into it
-- remove the template’s git history and initialize a fresh repo
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
-```
-
-After the script finishes:
-
-1) `cd` into your new project folder (the script prints the exact name):
-
-```sh
-cd YourProjectFolder
-```
-
-2) Edit your manuscript:
-
-- `story.typ` includes your chapters
-- `chapters/chapter1.typ` is an example chapter file
-
-3) Build outputs:
+Build a PDF:
 
 ```sh
 make pdf
 ```
 
-Note: the bootstrap script already runs `./scripts/template-init.sh` for you and stamps
-your title/author/language/rights into `styles/metadata.yaml`, `print.typ`, and the
+Note: the bootstrap script runs `./scripts/template-init.sh` and stamps your
+title/author/language/rights into `styles/metadata.yaml`, `print.typ`, and the
 `Makefile` output name.
 
 ## Initialize / update the template (`template-init.sh`)
@@ -211,3 +200,4 @@ Additional project docs live in `docs/`:
 - `docs/WRITING_INSTRUCTIONS.md` — writing style instructions, mainly intended for LLMs.
 - `docs/OUTLINE.md` — story outline notes
 - `docs/CHARACTERS.md` — character notes
+
