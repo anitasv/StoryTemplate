@@ -46,25 +46,28 @@ This will:
 curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
 ```
 
-1) Edit your manuscript:
+After the script finishes:
+
+1) `cd` into your new project folder (the script prints the exact name):
+
+```sh
+cd YourProjectFolder
+```
+
+2) Edit your manuscript:
 
 - `story.typ` includes your chapters
 - `chapters/chapter1.typ` is an example chapter file
 
-2) Set your book metadata (title/author/etc.):
+3) Build outputs:
 
 ```sh
-./scripts/template-init.sh
+make pdf
 ```
 
-This updates:
-
-- `styles/metadata.yaml` (EPUB/Pandoc metadata)
-- `print.typ` (`book_title` / `book_author` used for the title page)
-
-It also updates:
-
-- `Makefile` (`NAME := ...`) so generated output filenames match your book title.
+Note: the bootstrap script already runs `./scripts/template-init.sh` for you and stamps
+your title/author/language/rights into `styles/metadata.yaml`, `print.typ`, and the
+`Makefile` output name.
 
 ## Initialize / update the template (`template-init.sh`)
 
