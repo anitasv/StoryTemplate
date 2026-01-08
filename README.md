@@ -6,7 +6,7 @@ A minimal template for writing novels with [Typst](https://typst.app/).
 
 Start here:
 
-- **docs/INSTALL.md** — clone the template, then detach from the upstream template and create your own Git repo.
+- **docs/INSTALL.md** — recommended one-command bootstrap (curl) to create your own novel folder + Git repo.
 
 If you want to keep an `upstream` remote for pulling template updates, see **docs/CONTRIBUTE.md**.
 
@@ -32,6 +32,19 @@ You’ll need the following tools installed locally:
 ## Quick start
 
 If you haven’t yet, follow **docs/INSTALL.md** first.
+
+### One-command project creation (recommended)
+
+This will:
+
+- prompt you for your novel title/author/etc.
+- create a new folder (default is CamelCase derived from the title)
+- clone the template into it
+- remove the template’s git history and initialize a fresh repo
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
+```
 
 1) Edit your manuscript:
 

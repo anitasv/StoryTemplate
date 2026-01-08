@@ -14,6 +14,32 @@ This file covers:
 
 ---
 
+## Option A (recommended): One-command bootstrap (curl)
+
+This will:
+
+- ask a few questions (title, author, language, rights)
+- suggest a default folder name derived from the title (CamelCase)
+- clone the template into that folder
+- remove the template git history and initialize a fresh git repo
+
+Run:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
+```
+
+After it finishes:
+
+```sh
+cd <your-folder>
+make pdf
+```
+
+---
+
+## Option B: Manual install (clone + detach)
+
 ## 1) Clone the template
 
 ### Shallow clone (fast)
