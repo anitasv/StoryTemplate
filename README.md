@@ -2,6 +2,14 @@
 
 A minimal template for writing novels with [Typst](https://typst.app/).
 
+## Install / create your own repo
+
+Start here:
+
+- **docs/INSTALL.md** — clone the template, then detach from the upstream template and create your own Git repo.
+
+If you want to keep an `upstream` remote for pulling template updates, see **docs/CONTRIBUTE.md**.
+
 ## Prerequisites
 
 You’ll need the following tools installed locally:
@@ -22,6 +30,8 @@ You’ll need the following tools installed locally:
 - On Windows, consider using WSL.
 
 ## Quick start
+
+If you haven’t yet, follow **docs/INSTALL.md** first.
 
 1) Edit your manuscript:
 
