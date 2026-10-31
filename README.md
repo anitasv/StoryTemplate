@@ -39,6 +39,18 @@ You’ll need the following tools installed locally:
 - Usually preinstalled on macOS/Linux.
 - On Windows, consider using WSL.
 
+4) **Python 3.9+ and Pillow** (required for EPUB + ODT image preparation; not needed for PDF/HTML):
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-images.txt
+make epub odt PYTHON=.venv/bin/python
+```
+
+Alternatively, install the requirements in an existing Python environment. Override
+`PYTHON` when building if Pillow is installed in a different interpreter.
+The bootstrap installer offers Typst/Pandoc, but does not install Pillow.
+
 ## Quick start
 
 ### What to edit first
@@ -143,6 +155,43 @@ Clean generated files:
 make clean
 make clean-odt
 ```
+
+### Image optimization for EPUB and ODT
+
+Both exports use the same content-addressed cache in `output/document-assets/`.
+Embedded images are extracted into linked files before Pandoc runs, avoiding
+large base64-heavy inputs and reusing identical derivatives across chapters and
+formats. The EPUB cover uses the same preparation pipeline.
+
+Opaque PNG artwork with more than 256 colors is eligible for JPEG conversion
+only when the result is smaller. Defaults in `styles/image-export.json` are
+quality **85** and maximum dimension **1600** pixels, preserving aspect ratio
+without upscaling. Set `quality` to `null` for lossless extraction instead.
+Transparent/animated PNGs, limited-color graphics, and existing JPEG/GIF/WebP/SVG
+images are preserved byte-for-byte. Original images, PDF and standalone HTML
+are never compressed or overwritten by this pipeline.
+
+Changes to compression settings regenerate export inputs without recompiling
+standalone HTML. Missing cached assets are recreated on the next build.
+`make clean-odt` preserves EPUB and the shared cache; `make clean` removes both
+formats' generated artifacts and derivatives, while preserving unrelated files.
+
+ODT image-only paragraphs are centered and oversized frames are scaled to fit
+the page margins. Mixed prose/image paragraphs are left alone; complex custom
+page layouts may require manual review.
+
+### Image pipeline tests
+
+With Python/Pillow, Typst, Pandoc and make installed:
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+Integration tests build isolated fixture books, not your manuscript. They cover
+shared JPEGs, unchanged originals, incremental builds, cache recovery, settings
+changes, cleanup isolation, and ODT alignment. Integration tests are skipped if
+the external build tools are unavailable.
 
 ### Build outputs directly
 

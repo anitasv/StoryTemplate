@@ -1,0 +1,2 @@
+# JPEG derivatives for EPUB/ODT only; PDF and standalone HTML keep originals.
+Pillow>=10.0,<13
