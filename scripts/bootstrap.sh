@@ -2,7 +2,7 @@
 # StoryTemplate bootstrap installer
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh)"
 #
 # What it does:
 # - Prompts for book metadata (title/author/language/rights)
@@ -35,7 +35,7 @@ confirm() {
   local q="$1"
   local ans
   printf '%s [y/N]: ' "$q" >&2
-  IFS= read -r ans || ans=""
+  IFS= read -r ans || die "could not read an answer from standard input"
   case "${ans}" in
     y|Y|yes|YES) return 0 ;;
     *) return 1 ;;
@@ -100,7 +100,7 @@ prompt() {
   else
     printf '%s: ' "$label" >&2
   fi
-  IFS= read -r ans || ans=""
+  IFS= read -r ans || die "could not read an answer from standard input"
   if [ -z "$ans" ]; then
     printf '%s' "$def"
   else

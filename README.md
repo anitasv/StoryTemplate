@@ -7,8 +7,15 @@ A minimal template for writing novels with [Typst](https://typst.app/).
 Recommended one-command project creation (creates a new folder + fresh Git repo):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/anitasv/StoryTemplate/main/scripts/bootstrap.sh)"
 ```
+
+This passes the downloaded script to Bash as a command string, leaving standard
+input available for interactive prompts instead of using it for a script pipe.
+
+Run this in an interactive terminal with Bash installed (macOS, Linux, or WSL on
+Windows). Press Enter to accept an individual default. If input ends before all
+questions are answered, the installer exits without creating a project.
 
 On **macOS**, the bootstrap script will also offer to install missing prerequisites
 (Homebrew, Typst, Pandoc). It will skip anything that’s already installed.
